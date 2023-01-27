@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
     <head>
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>图标生成器</title>
+        <title>Icon Generator</title>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.1/dist/semantic.min.css">
@@ -23,17 +23,17 @@
         </div>
         <div class="ui attached stackable menu">
             <div class="ui container">
-                <a class="item">
-                Adobe系列
+                <a class="item" href="javascript:void(0);" onclick="switchToAdobe()">
+                Adobe Series
+                </a>
+                <a class="item"  href="javascript:void(0);" onclick="switchToJB()">
+                Jet Brain Series
                 </a>
                 <a class="item">
-                Jet Brain系列
+                Microsoft Office Series
                 </a>
                 <a class="item">
-                Microsoft Office系列
-                </a>
-                <a class="item">
-                其他系列
+                other
                 </a>
             </div>
         </div>
@@ -42,10 +42,10 @@
             <div class="column">
                     <canvas id="canvas" width="500px" height="500px"></canvas>
             </div>
-            <div class="column" id="Adobe">
+            <div class="column" id="Adobe" style="display: none;">
                 <div class="ui two column relaxed grid">
                     <div class="row">
-                        <div class="wide column"><h3>颜色1</h3></div>
+                        <div class="wide column"><h3>Color1</h3></div>
                         <div class="wide column">
                             <div class="ui input">
                                 <input type="text" class="coloris" id="backgroundColorPicker" data-coloris oninput="handleBackgroundColorPicker(event)">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="wide column"><h3>颜色2</h3></div>
+                        <div class="wide column"><h3>Color2</h3></div>
                         <div class="wide column">
                             <div class="ui input">
                                 <input type="text" class="coloris" id="frontColorPicker" data-coloris oninput="handleFrontColorPicker(event)">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="wide column"><h3>文字</h3></div>
+                        <div class="wide column"><h3>Text</h3></div>
                         <div class="wide column">
                             <div class="ui input">
                                 <input type="text" placeholder="Ps" id="textInput" oninput="handleText(event)">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="wide column"><h3>形状</h3></div>
+                        <div class="wide column"><h3>Shape</h3></div>
                         <div class="wide column">
                             <div class="form-check-inline">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioSquare" checked onchange="handleRadio(event, 'square')">
@@ -87,22 +87,99 @@
                     </div>
                     <div class="row">
                         <div class="wide column">
+                        </div>
+                        <div class="wide column">
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  下载图片
+                                  Download
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#" onclick="downloadAs('PNG')">下载成PNG</a>
-                                  <a class="dropdown-item" href="#" onclick="downloadAs('JPG')">下载成JPG</a>
-                                  <a class="dropdown-item" href="#" onclick="downloadAs('ICO')">下载成ICO</a>
+                                  <a class="dropdown-item" href="#" onclick="downloadAs('PNG', 'Adobe')">Download as PNG</a>
+                                  <a class="dropdown-item" href="#" onclick="downloadAs('JPG', 'Adobe')">Download as JPG</a>
+                                  <a class="dropdown-item" href="#" onclick="downloadAs('ICO', 'Adobe')">Download as ICO</a>
                                 </div>
                               </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" id="JB" style="display: none;">
+                <div class="ui two column relaxed grid">
+                    <div class="row">
+                        <div class="wide column"><h3>Color1</h3></div>
                         <div class="wide column">
+                            <div class="ui input">
+                                <input type="text" class="coloris" id="jbColorPicker1" data-coloris oninput="handleJbColorPicker1(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wide column"><h3>Color2</h3></div>
+                        <div class="wide column">
+                            <div class="ui input">
+                                <input type="text" class="coloris" id="jbColorPicker2" data-coloris oninput="handleJbColorPicker2(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wide column"><h3>Color3</h3></div>
+                        <div class="wide column">
+                            <div class="ui input">
+                                <input type="text" class="coloris" id="jbColorPicker3" data-coloris oninput="handleJbColorPicker3(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wide column"><h3>Color4</h3></div>
+                        <div class="wide column">
+                            <div class="ui input">
+                                <input type="text" class="coloris" id="jbColorPicker4" data-coloris oninput="handleJbColorPicker4(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wide column"><h3>Text</h3></div>
+                        <div class="wide column">
+                            <div class="ui input">
+                                <input type="text" placeholder="IJ" id="jbTextInput" oninput="handleJbText(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wide column"><h3>Shape</h3></div>
+                        <div class="wide column">
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="jbRadioSharp" checked>
+                                <label class="form-check-label" for="jbRadioSharp">
+                                  sharp
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="jbRadioBlunt" disabled>
+                                <label class="form-check-label" for="jbRadioBlunt">
+                                  blunt
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wide column">
+                            <button class="ui button" onclick="handleRandomButton(event)">random</button>
+                        </div>
+                        <div class="wide column">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Download
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#" onclick="downloadAs('PNG', 'JB')">Download as PNG</a>
+                                  <a class="dropdown-item" href="#" onclick="downloadAs('JPG', 'JB')">Download as JPG</a>
+                                  <a class="dropdown-item" href="#" onclick="downloadAs('ICO', 'JB')">Download as ICO</a>
+                                </div>
+                              </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
         <script src="static/core.js"></script>
