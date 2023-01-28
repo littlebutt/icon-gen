@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="ui fluid container">
-            billboard
+            <img src="./static/title.jpg" style="height: 120px;"/>
         </div>
         <div class="ui attached stackable menu">
             <div class="ui container">
@@ -30,9 +30,6 @@
                 Jet Brain Series
                 </a>
                 <a class="item">
-                Microsoft Office Series
-                </a>
-                <a class="item">
                 other
                 </a>
             </div>
@@ -40,7 +37,36 @@
         <br/>
         <div class="ui two column stackable grid container">
             <div class="column">
-                    <canvas id="canvas" width="500px" height="500px"></canvas>
+                <div class="ui four column grid">
+                    <div class="four column row">
+                        <canvas id="canvas" width="500px" height="500px"></canvas>
+                    </div>
+                    <div id="adobePreset" class="four column row" style="margin-top: 430px; display: inline-block;">
+                        <a href="javascript:void(0)" onclick="presetAdobe('#87bcf6','#252653')">
+                            <img src="./static/adobe1.png" class="presetImg"/>
+                        </a>
+                        <a href="javascript:void(0)" onclick="presetAdobe('#fd9c00','#330100')">
+                            <img src="./static/adobe2.png" class="presetImg"/>
+                        </a>
+                        <a href="javascript:void(0)" onclick="presetAdobe('#00f1bd','#00281f')">
+                            <img src="./static/adobe3.png" class="presetImg"/>
+                        </a>
+                        <a href="javascript:void(0)" onclick="presetAdobe('#ff2f67','#48011f')">
+                            <img src="./static/adobe4.png" class="presetImg"/>
+                        </a>
+                    </div>
+                    <div id="jbPreset" class="four column row" style="margin-top: 430px; display: inline-block;">
+                        <a href="javascript:void(0)" onclick="presetJb('#fe2d5d','#047cf7', '#8e53a7', '#f97b0a')">
+                            <img src="./static/jb1.png" class="presetImg"/>
+                        </a>
+                        <a href="javascript:void(0)" onclick="presetJb('#fcf84a','#21d789', '#43da81', '#09c5e8')">
+                            <img src="./static/jb2.png" class="presetImg"/>
+                        </a>
+                        <a href="javascript:void(0)" onclick="presetJb('#00cdd7','#2086d7', '#00cdd7', '#fff045')">
+                            <img src="./static/jb3.png" class="presetImg"/>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="column" id="Adobe" style="display: none;">
                 <div class="ui two column relaxed grid">

@@ -16,3 +16,9 @@
     font-weight: 700;
     color: rgba(0,0,0,.6);
 }
+
+.presetImg {
+    width: 50px; 
+    height: 50px;
+    margin-left: 10px;
+}

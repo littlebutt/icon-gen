@@ -17,12 +17,16 @@ let jbConfig = {}
 const switchToAdobe = () => {
     document.getElementById("Adobe").style.display = "inline-block"
     document.getElementById("JB").style.display = "none"
+    document.getElementById("adobePreset").style.display = "inline-block"
+    document.getElementById("jbPreset").style.display = "none"
     initAdobeIcon()
 }
 
 const switchToJB = () => {
     document.getElementById("Adobe").style.display = "none"
     document.getElementById("JB").style.display = "inline-block"
+    document.getElementById("adobePreset").style.display = "none"
+    document.getElementById("jbPreset").style.display = "inline-block"
     initJBIcon()
     
 }
@@ -116,11 +120,25 @@ const handleRadio = (e, type) => {
     generateAdobeIcon(adobeConfig)
 }
 
+const presetAdobe = (c1, c2) => {
+    adobeConfig.color1 = c1
+    document.getElementById("backgroundColorPicker").value = c1
+    document.querySelector('#backgroundColorPicker').dispatchEvent(new Event('input', { bubbles: true }))
+    adobeConfig.color2 = c2
+    document.getElementById("frontColorPicker").value = c2
+    document.querySelector('#frontColorPicker').dispatchEvent(new Event('input', { bubbles: true }))
+    generateAdobeIcon(adobeConfig)
+}
+
 const initJBIcon = () => {
     document.getElementById("jbColorPicker1").value = presetJBColor1
+    document.querySelector('#jbColorPicker1').dispatchEvent(new Event('input', { bubbles: true }))
     document.getElementById("jbColorPicker2").value = presetJBColor2
+    document.querySelector('#jbColorPicker2').dispatchEvent(new Event('input', { bubbles: true }))
     document.getElementById("jbColorPicker3").value = presetJBColor3
+    document.querySelector('#jbColorPicker3').dispatchEvent(new Event('input', { bubbles: true }))
     document.getElementById("jbColorPicker4").value = presetJBColor4
+    document.querySelector('#jbColorPicker4').dispatchEvent(new Event('input', { bubbles: true }))
     generateJBIcon(jbConfig)
 }
 
@@ -229,6 +247,23 @@ const handleRandomButton = (e) => {
         Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
     generateJBIcon(jbConfig)
 }
+
+const presetJb = (c1, c2, c3, c4) => {
+    jbConfig.color1 = c1
+    document.getElementById("jbColorPicker1").value = c1
+    document.querySelector('#jbColorPicker1').dispatchEvent(new Event('input', { bubbles: true }))
+    jbConfig.color2 = c2
+    document.getElementById("jbColorPicker2").value = c2
+    document.querySelector('#jbColorPicker2').dispatchEvent(new Event('input', { bubbles: true }))
+    jbConfig.color3 = c3
+    document.getElementById("jbColorPicker3").value = c3
+    document.querySelector('#jbColorPicker3').dispatchEvent(new Event('input', { bubbles: true }))
+    jbConfig.color4 = c4
+    document.getElementById("jbColorPicker4").value = c4
+    document.querySelector('#jbColorPicker4').dispatchEvent(new Event('input', { bubbles: true }))
+    generateJBIcon(jbConfig)
+} 
+
 switchToAdobe()
 
 
