@@ -36,7 +36,7 @@ const downloadAs = (type, style) => {
         case "JPG": {
             canvas_.toBlob((b) => {
                 saveAs(b, style + "_style_icon.jpg")
-            })
+            }, "image/jpeg")
             break
         }
         case "PNG": {
@@ -48,7 +48,7 @@ const downloadAs = (type, style) => {
         case "ICO": {
             canvas_.toBlob((b) => {
                 saveAs(b, style + "_style_icon.ico")
-            })
+            }, 'image/vnd.microsoft.icon', '-moz-parse-options:format=bmp;bpp=32')
             break
         }
     }
