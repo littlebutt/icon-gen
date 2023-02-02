@@ -4,7 +4,7 @@
 <img src="./static/title.jpg"/>
 </div>
 
-![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=green&up_message=online&url=http%3A%2F%2F3.112.5.128%2Ficon-gen%2F)
+![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=green&up_message=online&url=http%3A%2F%2Flittlebutt-workshop.com%2Ficon-gen%2F)
 
 ## What is it?
 
