@@ -10,41 +10,6 @@ const presetJBText = "IJ"
 const presetJBRandoms = [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 
     Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
 
-// reference:
-// https://github.com/gliffy/canvas2svg/issues/68#issuecomment-580236220
-function canvas2svgFix() {
-    C2S.prototype.__parseFont = function () { 
-        function parsedStyleForCSS(cssString) {
-            var el = document.createElement("span");
-            el.setAttribute("style", cssString);
-            return el.style; // CSSStyleDeclaration object
-        }
-        var parsed = parsedStyleForCSS('font:'+this.font);
-        
-       var data = {
-           style: parsed['font-style'],
-           size: parsed['font-size'],
-           family: parsed['font-family'].replace(/"/g,''),
-           weight: parsed['font-weight'],
-           decoration: parsed['text-decoration'],
-           href: null
-        };
-
-        //canvas doesn't support underline natively, but we can pass this attribute
-        if (this.__fontUnderline === "underline") {
-            data.decoration = "underline";
-        }
-
-        //canvas also doesn't support linking, but we can pass this as well
-        if (this.__fontHref) {
-            data.href = this.__fontHref;
-        }
-
-        return data;
-    };
-}
-canvas2svgFix()
-
 let adobeConfig = {}
 let jbConfig = {}
 
