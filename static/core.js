@@ -10,7 +10,6 @@ const presetJBText = "IJ"
 const presetJBRandoms = [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 
     Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
 
-
 let adobeConfig = {}
 let jbConfig = {}
 
@@ -51,17 +50,31 @@ const downloadAs = (type, style) => {
             }, 'image/vnd.microsoft.icon', '-moz-parse-options:format=bmp;bpp=32')
             break
         }
+        case "SVG": {
+            var ctx = new C2S(500,500)
+            switch (style) {
+                case "Adobe":
+                    generateAdobeIcon(adobeConfig, ctx)
+                    break
+                case "JB":
+                    generateJBIcon(jbConfig, ctx)
+                    break
+            }
+
+            var blob = new Blob([ctx.getSerializedSvg(true)], {type: "text/xml;charset=utf-8"})
+            saveAs(blob, style + "_style_icon.svg")
+            break
+        }
     }
 }
 
 const initAdobeIcon = () => {
     document.getElementById("backgroundColorPicker").value = presetAdobeColor1
     document.getElementById("frontColorPicker").value = presetAdobeColor2
-    generateAdobeIcon(adobeConfig)
+    generateAdobeIcon(adobeConfig, canvas_.getContext("2d"))
 }
 
-const generateAdobeIcon = (config) => {
-    const ctx = canvas_.getContext("2d")
+const generateAdobeIcon = (config, ctx) => {
     ctx.clearRect(0, 0, 500, 500)
     const {
         color1 = presetAdobeColor1,
@@ -103,21 +116,21 @@ const generateAdobeIcon = (config) => {
 
 const handleBackgroundColorPicker = (e) => {
     adobeConfig.color1 = document.getElementById("backgroundColorPicker").value
-    generateAdobeIcon(adobeConfig)
+    generateAdobeIcon(adobeConfig, canvas_.getContext("2d"))
 }
 
 const handleFrontColorPicker = (e) => {
     adobeConfig.color2 = document.getElementById("frontColorPicker").value
-    generateAdobeIcon(adobeConfig)
+    generateAdobeIcon(adobeConfig, canvas_.getContext("2d"))
 }
 const handleText = (e) => {
     adobeConfig.text = document.getElementById("textInput").value
-    generateAdobeIcon(adobeConfig)
+    generateAdobeIcon(adobeConfig, canvas_.getContext("2d"))
 }
 
 const handleRadio = (e, type) => {
     adobeConfig.shape = type
-    generateAdobeIcon(adobeConfig)
+    generateAdobeIcon(adobeConfig, canvas_.getContext("2d"))
 }
 
 const presetAdobe = (c1, c2) => {
@@ -127,7 +140,7 @@ const presetAdobe = (c1, c2) => {
     adobeConfig.color2 = c2
     document.getElementById("frontColorPicker").value = c2
     document.querySelector('#frontColorPicker').dispatchEvent(new Event('input', { bubbles: true }))
-    generateAdobeIcon(adobeConfig)
+    generateAdobeIcon(adobeConfig, canvas_.getContext("2d"))
 }
 
 const initJBIcon = () => {
@@ -139,11 +152,10 @@ const initJBIcon = () => {
     document.querySelector('#jbColorPicker3').dispatchEvent(new Event('input', { bubbles: true }))
     document.getElementById("jbColorPicker4").value = presetJBColor4
     document.querySelector('#jbColorPicker4').dispatchEvent(new Event('input', { bubbles: true }))
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 
-const generateJBIcon = (config) => {
-    const ctx = canvas_.getContext("2d")
+const generateJBIcon = (config, ctx) => {
     ctx.clearRect(0, 0, 500, 500)
     const {
         color1 = presetJBColor1,
@@ -224,28 +236,28 @@ const drawRect = (ctx, rand, linearGradient, order, width) => {
 
 const handleJbColorPicker1 = (e) => {
     jbConfig.color1 = document.getElementById("jbColorPicker1").value
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 const handleJbColorPicker2 = (e) => {
     jbConfig.color2 = document.getElementById("jbColorPicker2").value
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 const handleJbColorPicker3 = (e) => {
     jbConfig.color3 = document.getElementById("jbColorPicker3").value
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 const handleJbColorPicker4 = (e) => {
     jbConfig.color4 = document.getElementById("jbColorPicker4").value
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 const handleJbText = (e) => {
     jbConfig.text = document.getElementById("jbTextInput").value
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 const handleRandomButton = (e) => {
     jbConfig.random =  [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 
         Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 }
 
 const presetJb = (c1, c2, c3, c4) => {
@@ -261,13 +273,8 @@ const presetJb = (c1, c2, c3, c4) => {
     jbConfig.color4 = c4
     document.getElementById("jbColorPicker4").value = c4
     document.querySelector('#jbColorPicker4').dispatchEvent(new Event('input', { bubbles: true }))
-    generateJBIcon(jbConfig)
+    generateJBIcon(jbConfig, canvas_.getContext("2d"))
 } 
 
 switchToAdobe()
-
-
-
-
-
 
