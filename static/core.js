@@ -10,6 +10,8 @@ const presetJBText = "IJ"
 const presetJBRandoms = [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 
     Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
 
+// reference:
+// https://github.com/gliffy/canvas2svg/issues/68#issuecomment-580236220
 function canvas2svgFix() {
     C2S.prototype.__parseFont = function () { 
         function parsedStyleForCSS(cssString) {
